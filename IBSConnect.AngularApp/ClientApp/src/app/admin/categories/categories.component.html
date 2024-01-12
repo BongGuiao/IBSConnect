@@ -1,0 +1,24 @@
+<h3>Categories</h3>
+
+<data-grid class="w-50" [source]="source" [rows]="rows"></data-grid>
+
+<button [disabled]="isEditing" class="btn" (click)="add()">Add Item</button>
+
+
+<ng-template #freeTier let-row="row">
+  <input type="checkbox" class="form-check-input" [(ngModel)]="row.isFreeTier" (change)="save(row)" >
+</ng-template>
+
+<ng-template #actions let-row="row">
+  <div class="cursor-pointer" (click)="delete(row)">
+    <fa-icon [icon]="faTrash"></fa-icon>
+  </div>
+</ng-template>
+
+<ng-template #editable let-row="row">
+  <div *ngIf="!editing[row.id]" class="relative">
+    <div class="editable-placeholder cursor-pointer" (click)="edit(row)">{{row.name ?? '&nbsp;'}}</div>
+  </div>
+  <input *ngIf="editing[row.id]" [autoFocus] type="text" class="form-control" [(ngModel)]="row.name"
+         (blur)="cancel(row)" (keydown.enter)="save(row)" (keydown.esc)="cancel(row)">
+</ng-template>

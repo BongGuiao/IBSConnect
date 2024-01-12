@@ -1,0 +1,23 @@
+<div class="d-flex mb-3 space-x-3 items-center">
+    <div>
+        <h3>Active Sessions</h3>
+    </div>
+    <div class="spacer"></div>
+    <div>
+      <!-- <search-text class="search" (change)="setFilterQuery($event)"></search-text> -->
+    </div>
+    <button class="btn btn-primary" (click)="closeActiveSessions()">Close Sessions</button>
+  </div>
+
+<table class="table table-striped history-table">
+    <tr>
+        <th>Member Name</th>
+        <th>Start Time</th>
+        <th>Total Time</th>
+    </tr>
+    <tr *ngFor="let session of sessions">
+        <td>{{session.name}}</td>
+        <td>{{session.startTime | date : 'MM/dd/yyyy hh:mm a'}}</td>
+        <td>{{session.totalMinutes | timeSpan}}</td>
+    </tr>
+</table>

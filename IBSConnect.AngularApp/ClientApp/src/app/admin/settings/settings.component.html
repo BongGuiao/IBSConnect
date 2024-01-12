@@ -1,0 +1,49 @@
+<div class="d-flex mb-3 space-x-3 align-items-center">
+  <h3>Settings</h3>
+  <div class="spacer"></div>
+  <!--<div>
+    <search-text class="search" (change)="setFilterQuery($event)"></search-text>
+  </div>-->
+</div>
+<form [formGroup]="form">
+  <div class="form-group">
+    <label>Rate (Php/min)</label>
+    <small class="px-1">
+      <fa-icon [icon]="faQuestionCircle" tooltip="This is the rate that will be applied when charging in billing" delay="200"></fa-icon>
+    </small>
+    <input type="number" class="form-control" formControlName="rate" />
+    <span class="small text-danger" *ngIf="isSubmitted && form.controls.rate.errors && form.controls.rate.errors.required">Field is required</span>
+  </div>
+
+  <div class="form-group">
+    <label>Default Allotted Time (mins)</label>
+    <small class="px-1">
+      <fa-icon [icon]="faQuestionCircle" tooltip="This is the default time that will be granted to newly imported members" delay="200"></fa-icon>
+    </small>
+    <input type="number" class="form-control" formControlName="defaultTime" />
+    <span class="small text-danger" *ngIf="isSubmitted && form.controls.defaultTime.errors && form.controls.defaultTime.errors.required">Field is required</span>
+  </div>
+
+  <div class="form-group">
+    <label>Default Member Password</label>
+    <small class="px-1">
+      <fa-icon [icon]="faQuestionCircle" tooltip="This is the password that will be assigned to newly imported members" delay="200"></fa-icon>
+    </small>
+    <input type="text" class="form-control" formControlName="defaultPassword" />
+    <span class="small text-danger" *ngIf="isSubmitted && form.controls.defaultPassword.errors && form.controls.defaultPassword.errors.required">Field is required</span>
+  </div>
+</form>
+<div>
+  <button class="btn btn-primary" (click)="save()">Save</button>
+  <button class="btn btn-danger" (click)="reset()">Reset Time</button>
+</div>
+
+
+
+<ng-template #initializeDialog>
+  <div class="mb-3">
+    This will delete all session data and move them in history. This cannot be undone.
+    To proceed with deleting, please make sure that you already backup your data. If you are sure, please input <b>School Year </b>.
+  </div>
+  <input type="text" class="form-control" placeholder="School Year" [(ngModel)]="confirmInitialize" />
+</ng-template>

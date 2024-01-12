@@ -1,0 +1,20 @@
+<div class="d-flex w-50 align-items-center space-x-3">
+  <h3>Courses</h3>
+  <div class="spacer"></div>
+  <search-text (change)="setFilter($event)"></search-text>
+  <button [disabled]="isEditing" class="btn btn-primary" (click)="add()">Add Item</button>
+</div>
+<data-grid class="w-50" [source]="source" [rows]="rows"></data-grid>
+
+<button [disabled]="isEditing" class="btn" (click)="add()">Add Item</button>
+
+<ng-template #editable let-row="row">
+    <div *ngIf="!editing[row.id]"  class="relative">
+        <div class="editable-placeholder cursor-pointer" (click)="edit(row)">{{row.name ?? '&nbsp;'}}</div>
+        <div class="icons" (click)="delete(row)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+        </div>
+    </div>
+    <input *ngIf="editing[row.id]" [autoFocus] type="text" class="form-control" [(ngModel)]="row.name"
+        (blur)="cancel(row)" (keydown.enter)="save(row)" (keydown.esc)="cancel(row)">
+</ng-template>

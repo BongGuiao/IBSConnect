@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Scripts\0002 Test Data.sql" />
+		<None Remove="Scripts\Migrations\0002 Settings and Billing.sql" />
+		<None Remove="Scripts\Migrations\0003 Notes and Unit Area.sql" />
+		<None Remove="Scripts\Programmable Objects\Stored Procs\GetBilling.sql" />
+		<None Remove="Scripts\Programmable Objects\Stored Procs\GetMemberBilling.sql" />
+		<None Remove="Scripts\Programmable Objects\Views\vw_billing.sql" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Scripts\Migrations\0001 Create Database.sql" />
+		<EmbeddedResource Include="Scripts\Migrations\0003 Notes and Unit Area.sql" />
+		<EmbeddedResource Include="Scripts\Migrations\0002 Settings and Billing.sql" />
+		<EmbeddedResource Include="Scripts\Programmable Objects\Views\vw_billing.sql" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="dbup-mysql" Version="4.6.0" />
+		<PackageReference Include="MySql.Data" Version="8.0.29" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="appsettings.Production.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.Development.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Scripts\Programmable Objects\Stored Procs\" />
+	</ItemGroup>
+
+</Project>

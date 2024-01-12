@@ -1,0 +1,63 @@
+<div *ngIf="source">
+  <div class="data-grid table-container" [ngClass]="{ 'overflow-y-auto' : source.maxHeight }" [style.max-height]="source.maxHeight">
+    <table class="table table-striped" [style.minWidth]="source.minWidth">
+      <thead>
+        <tr *ngIf="source.columnGroups">
+          <th class="column-group-header" [ngClass]="columnClass[source.columnGroups[i]]" [attr.colspan]="source.columnGroups[i].colspan" *ngFor="let field of source.columnGroups; let i = index">
+            {{field.text}}
+          </th>
+        </tr>
+      </thead>
+      <thead>
+        <tr *ngIf="source.columns">
+          <th class="column-header" [style.width]="source.columns[i].width" [ngClass]="headerColumnClass[i]" *ngFor="let column of source.columns; let i = index">
+            <div *ngIf="sortable">
+              <div *ngIf="column.textTemplateRef">
+                <ng-container [ngTemplateOutlet]="column.textTemplateRef" [ngTemplateOutletContext]="{ column: column, index: i }"></ng-container>
+              </div>
+              <div *ngIf="column.text">
+                <a class="sortable" (click)="toggleSort(column.name)">{{column.text}}</a>
+                <span *ngIf="sort[column.name]" [ngClass]="{ 'sort-asc': sort[column.name] == 'asc', 'sort-desc': sort[column.name] == 'desc' }"></span>
+              </div>
+            </div>
+            <div *ngIf="!sortable">
+              <div *ngIf="column.textTemplateRef">
+                <ng-container [ngTemplateOutlet]="column.textTemplateRef" [ngTemplateOutletContext]="{ column: column, index: i }"></ng-container>
+              </div>
+              <div *ngIf="column.text">
+                {{column.text}}
+              </div>
+            </div>
+          </th>
+        </tr>
+        <tr *ngIf="!source.columns">
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr [scrollIntoViewIf]="row === selectedRow" [scrollParent]="scrollParent" *ngFor="let row of filteredRows; let r = index; trackBy: trackByFn" (click)="selectRow(row, $event)" [ngClass]="rowClass[r]">
+          <td [ngClass]="columnClass[i]" [style.width]="source.columns[i].width" [style.minWidth]="source.columns[i].minWidth" *ngFor="let field of source.columns; let i = index">
+            <div *ngIf="source.columns[i].templateRef">
+              <ng-container [ngTemplateOutlet]="source.columns[i].templateRef" [ngTemplateOutletContext]="{ row: row, index: r }"></ng-container>
+            </div>
+            <div *ngIf="!source.columns[i].template && !source.columns[i].templateRef">
+              {{row[field.name]}}
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="!rows || rows.length == 0">
+          <td>
+            {{noResultsText}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-container">
+    <pagination *ngIf="total / pageSize > 1" [totalItems]="total" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [maxSize]="10" [itemsPerPage]="pageSize" [boundaryLinks]="true">
+    </pagination>
+  </div>
+</div>

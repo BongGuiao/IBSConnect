@@ -1,0 +1,11 @@
+.admin-content {
+  margin-left: 230px;
+  width: 100%;
+
+  @media print {
+    margin-left: 0px;
+  }
+
+  padding-left: 1em;
+  padding-right: 1em;
+}

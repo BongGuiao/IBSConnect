@@ -1,0 +1,53 @@
+@import '../../styles/_colors.scss';
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.nav-separator {
+    border-left: 1px solid #888;
+    height: 1.75em;
+    position: relative;
+    top: 0.35em;
+    margin-left: 0.75em;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+
+.navbar {
+  z-index: 1000;
+}
+
+
+.connect {
+  color: $pink;
+}
+
+
+.spacer {
+  display: block;
+  flex: auto;
+}
+
+
+.name {
+  display: flex;
+  color: #fff;
+  align-items: center;
+  color: #fff;
+}

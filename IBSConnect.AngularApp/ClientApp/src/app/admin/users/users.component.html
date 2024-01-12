@@ -1,0 +1,27 @@
+<div class="d-flex mb-3 space-x-3 align-items-center">
+  <h3>Users</h3>
+  <div class="spacer"></div>
+  <!--<div>
+    <search-text class="search" (change)="setFilterQuery($event)"></search-text>
+  </div>-->
+  <div>
+    <button class="btn btn-primary" (click)="add()">Add</button>
+  </div>
+</div>
+
+<div class="mb-3">
+
+</div>
+
+<data-grid [source]="source" [rows]="users" [total]="total" [rowSelectable]="true" (onRowSelect)="select($event)"></data-grid>
+
+<ng-template #userDialog>
+  <user [mode]="mode" #userView [user]="selectedUser"></user>
+</ng-template>
+<ng-template #deleteDialog>
+  <div class="mb-3">
+    This will delete all member data including history. This cannot be undone.
+    To proceed with deleting, type <b>confirm</b>.
+  </div>
+  <input type="text" class="form-control" placeholder="confirm" [(ngModel)]="confirmDelete" />
+</ng-template>

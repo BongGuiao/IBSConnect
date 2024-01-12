@@ -1,0 +1,131 @@
+@import '../../../styles.scss';
+
+:host {
+  display: block;
+}
+
+.table {
+  font-size: 13px;
+}
+
+.small table td, .small table th {
+  padding: .3rem;
+}
+
+tbody {
+  display: block;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* even columns width , fix width of table too*/
+}
+/*
+thead {
+  width: calc( 100% - 1em )
+}
+*/
+
+th {
+  color: #000;
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.table-container {
+}
+
+.result-count {
+  font-weight: 600;
+}
+
+a.sortable {
+  color: #000;
+  cursor: pointer;
+}
+
+.sort-desc {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 6px solid transparent;
+  border-top-color: black;
+  position: relative;
+  top: 4px;
+  left: 4px;
+  opacity: 0.4;
+}
+
+.sort-asc {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 6px solid transparent;
+  border-bottom-color: black;
+  position: relative;
+  top: -1px;
+  left: 4px;
+  opacity: 0.4;
+}
+
+.pagination-container {
+  position: sticky;
+  bottom: 10px;
+  margin-left: 10px;
+}
+
+table thead {
+  background-color: #fff;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+}
+
+tr.cursor-pointer {
+  cursor: pointer
+}
+
+td.center {
+  text-align: center;
+
+  div {
+    text-align: center;
+  }
+}
+
+td.right {
+  text-align: right;
+
+  div {
+    text-align: right;
+  }
+}
+
+td.left {
+  text-align: left;
+
+  div {
+    text-align: left;
+  }
+}
+
+th.center {
+  text-align: center;
+}
+
+th.right {
+  text-align: right;
+}
+
+th.left {
+  text-align: left;
+}
+
+.table td {
+  padding: 0.25rem;
+  overflow: hidden;
+}

@@ -1,0 +1,25 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.editable-placeholder {
+    padding: .42em .70em;
+    font-size: 1em;
+}
+
+.icons {
+    padding: 4px;
+    position: absolute;
+    top: 0.3em;
+    right: 0.75em;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.icons:hover {
+    opacity: 1;
+}
+
+.relative {
+    position: relative;
+}

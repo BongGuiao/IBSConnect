@@ -1,0 +1,15 @@
+//@import "../styles/bootstrap.scss";
+
+
+.action-buttons {
+  display: flex;
+
+  .spacer {
+      flex: 1 0 auto;
+  }
+
+  > button ~ button {
+    margin-left: 5px;
+    flex: 0 1 auto;
+  }
+}

@@ -1,0 +1,28 @@
+<div class="mb-3">
+  <h3>Import Members</h3>
+</div>
+
+<div class="mb-3">
+  Select the file to import member data from. Only use the properly formatted template.
+</div>
+
+<div class="mb-3">
+  <a href="/assets/IBSUploadTemplate.xlsx">Download Template</a>
+</div>
+
+<div class="mb-3">
+  <input type="file" accept=".xlsx" #file />
+</div>
+
+<div class="mb-3">
+  <button class="btn btn-primary" (click)="uploadMembers()">Upload File</button>
+</div>
+
+<div class="p-3 border-1 border-info rounded-1" *ngIf="isUploaded">
+  <div>
+    {{importResult.added}} members added
+  </div>
+  <div>
+    {{importResult.updated}} members updated
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="d-flex w-50 align-items-center space-x-3">
+  <h3>Backup / Restore</h3>
+  <div class="spacer"></div>
+  <button class="btn btn-primary" (click)="backup()">Backup Database</button>
+</div>
+<data-grid class="w-50" [source]="source" [rows]="rows"></data-grid>
+
+<ng-template #action let-row="row">
+  <button class="btn btn-sm btn-outline-primary" (click)="restore(row)">Restore</button>
+</ng-template>
+
+
+<ng-template #created let-row="row">
+  {{row.dateCreated | date:'medium' }}
+</ng-template>
+
+
+<ng-template #size let-row="row">
+  {{row.size | fileSize }}
+</ng-template>
+
+
+<ng-template #action let-row="row">
+  <button class="btn btn-sm btn-outline-primary" (click)="restore(row)">Restore</button>
+</ng-template>
+
+<ng-template #confirm>
+  <div class="mb-3">
+    Are you sure you want to restore this backup? All data after this backup point will be lost!
+    Enter the word <b>confirm</b> below to continue.
+  </div>
+  <input type="text" class="form-control mb-3" placeholder="confirm" [(ngModel)]="confirmText" />
+  <!--<div>
+    <input id="backupNow" type="checkbox" class="form-check-input" [(ngModel)]="backupNow" /> <label for="backupNow" class="ml-3 form-check-label">Backup before restoring</label>
+  </div>-->
+</ng-template>
+

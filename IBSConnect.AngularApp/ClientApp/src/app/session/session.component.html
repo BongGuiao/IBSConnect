@@ -1,0 +1,71 @@
+<div class="main-content">
+  <div class="main-content-bg"></div>
+  <div class="logo"></div>
+  <div class="card" *ngIf="session">
+    <div class="d-flex">
+      <div class="image-container">
+        <img [attr.src]="picture">
+      </div>
+      <div class="profile w-100">
+        <div class="d-flex">
+          <h3 class="flex-grow-1">
+            {{session.lastName}}, {{session.firstName}} {{session.middleName}}
+          </h3>
+          <div>
+            <button class="btn btn-outline-primary" (click)="logout()">&times;</button>
+          </div>
+        </div>
+        <hr />
+        <h4>{{session.category}}</h4>
+        <table class="info-table">
+          <tr>
+            <td class="label">Year</td>
+            <td>{{session.year}}</td>
+          </tr>
+          <tr>
+            <td class="label">School</td>
+            <td>{{session.college}}</td>
+          </tr>
+          <tr>
+            <td class="label">Section</td>
+            <td>{{session.section}}</td>
+          </tr>
+          <tr>
+            <td class="label">Course</td>
+            <td>{{session.course}}</td>
+          </tr>
+        </table>
+        <table class="time-table mb-4">
+          <tr>
+            <td class="label">Start Time</td>
+            <td>{{session.startTime | date : 'MM/dd/yyyy hh:mm:ss a'}}</td>
+          </tr>
+          <tr>
+            <td class="label">Current Session</td>
+            <td>{{session.totalMinutes | timeSpan}}</td>
+          </tr>
+          <tr *ngIf="session.remainingTime >= 0 && !session.isFreeTier">
+            <td class="label">Remaining Time</td>
+            <td>{{session.remainingTime | timeSpan}}</td>
+          </tr>
+          <tr class="text-danger" *ngIf="session.remainingTime < 0">
+            <td class="fw-bold">Current Bill</td>
+            <td class="fw-bold">Php {{session.billableAmount | number : '0.2'}}</td>
+          </tr>
+        </table>
+        <div class="end-session mb-4">
+          <button class="btn btn-danger" (click)="endSession()">Sign out</button>
+        </div>
+        <div *ngIf="session.notes" class="warning text-danger mb-3">
+          <b>Reminder</b>: {{session.notes}}
+        </div>
+        <div class="warning text-danger">
+          Remember to <b>sign out</b> to end your current session and stop your time. If you close the browser without signing out, your time will continue to run. If you close this page or your connection times out, login again to return to this page to be able to sign out.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

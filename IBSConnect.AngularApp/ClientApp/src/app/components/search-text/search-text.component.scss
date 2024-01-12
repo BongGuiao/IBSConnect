@@ -1,0 +1,11 @@
+.search-text-container {
+  position: relative;
+
+  .clear-search {
+    position: absolute;
+    right: 8px;
+    top: 4px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+  }
+}

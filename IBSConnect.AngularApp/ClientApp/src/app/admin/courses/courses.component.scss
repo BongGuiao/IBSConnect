@@ -1,0 +1,12 @@
+@import '../editor-styles.scss';
+
+.spacer {
+  flex: auto;
+}
+
+
+.space-x-3 {
+  * ~ * {
+      margin-left: 0.75em;
+  }
+}

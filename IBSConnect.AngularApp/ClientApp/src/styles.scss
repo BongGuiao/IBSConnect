@@ -1,0 +1,144 @@
+@import "~ngx-toastr/toastr";
+@import "./styles/_colors.scss";
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
+.table-title {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.table-title .title {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+table.table thead tr {
+  background-color: #7b8a8b !important;
+}
+
+table.table thead th {
+  color: white;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.medium-text {
+  font-size: 1.2em;
+}
+
+.large-text {
+  font-size: 1.5em;
+}
+
+.heavy {
+  font-weight: 500;
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+}
+
+.spacer {
+  flex: auto;
+}
+
+.space-x-3 {
+  * ~ * {
+    margin-left: 0.5em;
+  }
+}
+
+table {
+  tr {
+    th {
+      border-collapse: collapse;
+      border: none;
+    }
+
+    td {
+    }
+  }
+}
+
+.print-hidden {
+  @media print {
+    display: none;
+  }
+}
+
+.tab-content {
+  height: calc(100% - 2em);
+  overflow-y: auto;
+}
+
+.modal-header {
+  background-color: $pink;
+  color: #fff;
+
+  button.close {
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    background: none;
+    font-size: 1.5em;
+    line-height: 0;
+  }
+}
+
+table {
+  tr {
+    border-top: 1px solid #aaa !important;
+    border-bottom: 1px solid #aaa !important;
+
+    th {
+      font-size: 1em;
+      border-top: 1px solid #888 !important;
+      border-bottom: 1px solid #888 !important;
+    }
+
+    td {
+      font-size: 1em;
+      border-bottom: 1px solid #aaa !important;
+      padding: 0.25em;
+    }
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.is-invalid {
+  color: red;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

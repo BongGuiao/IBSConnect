@@ -1,0 +1,44 @@
+<form [formGroup]="form" autocomplete="off">
+  <div class="row mb-3">
+    <div class="col-6 col-md-4">
+      <label>Username</label>
+      <input class="form-control" formControlName="userName" autocomplete="new-password">
+      <span class="small text-danger" *ngIf="isSubmitted && f.userName.errors && f.userName.errors.required">Field is required</span>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-6 col-md-4 col-lg-4">
+      <label>First Name</label>
+      <input class="form-control" formControlName="firstName" autocomplete="new-password">
+      <span class="small text-danger" *ngIf="isSubmitted && f.firstName.errors && f.firstName.errors.required">Field is required</span>
+    </div>
+    <div class="col-6 col-md-4 col-lg-4">
+      <label>Middle Name</label>
+      <input class="form-control" formControlName="middleName" autocomplete="new-password">
+      <span class="small text-danger" *ngIf="isSubmitted && f.middleName.errors && f.middleName.errors.required">Field is required</span>
+    </div>
+    <div class="col-6 col-md-4 col-lg-4">
+      <label>Last Name</label>
+      <input class="form-control" formControlName="lastName" autocomplete="new-password">
+      <span class="small text-danger" *ngIf="isSubmitted && f.lastName.errors && f.lastName.errors.required">Field is required</span>
+    </div>
+  </div>
+  <div class="mb-3" *ngIf="mode == 'edit'">
+    <input type="checkbox" id="changepassword" (change)="setChangePassword($event)" /> <label class="ml-3" for="changepassword">Change Password</label>
+  </div>
+  <div *ngIf="changePassword || mode == 'add'" class="row mb-3">
+    <div class="col-6 col-md-4">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" autocomplete="new-password">
+      <span class="small text-danger" *ngIf="isSubmitted && f.password.errors && f.password.errors.required">Field is required</span>
+      <span class="small text-danger" *ngIf="isSubmitted && f.password.errors && f.password.errors.mustMatch">Passwords must match</span>
+    </div>
+    <div class="col-6 col-md-4">
+      <label>Confirm Password</label>
+      <input type="password" class="form-control" formControlName="confirmPassword" autocomplete="new-password">
+      <span class="small text-danger" *ngIf="isSubmitted && f.confirmPassword.errors && f.confirmPassword.errors.required">Field is required</span>
+      <span class="small text-danger" *ngIf="isSubmitted && f.password.errors && f.password.errors.mustMatch">Passwords must match</span>
+    </div>
+  </div>
+</form>
+

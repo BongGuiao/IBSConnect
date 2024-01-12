@@ -1,0 +1,64 @@
+<nav class="navbar navbar-dark fixed-left" *ngIf="isLoggedIn">
+  <ul class="navbar-nav">
+    <!--<li class="nav-item"
+      [routerLinkActive]="['link-active']"
+      [routerLinkActiveOptions]="{ exact: true }">
+    <a class="nav-link" [routerLink]="['/admin']">Home</a>
+  </li>-->
+    <li class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="['settings']">Settings</a>
+    </li>
+    <li class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="['users']">Users</a>
+    </li>
+    <li class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="['members']">Members</a>
+    </li>
+    <li class="nav-separator">
+    </li>
+    <li class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="null">Data Management</a>
+    </li>
+    <li>
+      <ul>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['database']">Backup / Restore</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['import']">Import Data</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['applications']">Applications</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['unitareas']">Unit Areas</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['categories']">Categories</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['years']">Years</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['courses']">Courses</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['colleges']">Schools</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="['sessions']">Active Sessions</a>
+    </li>
+    <li class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="['billing']">Billing</a>
+    </li>
+    <li class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="['reports']">Reports</a>
+    </li>
+    <li class="nav-item pull-right">
+      <a class="nav-link" href="#" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</nav>

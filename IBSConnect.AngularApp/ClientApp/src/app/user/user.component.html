@@ -1,0 +1,78 @@
+<form class="mb-4" [formGroup]="userForm" autocomplete="chrome-off">
+  <input autocomplete="false" name="hidden" type="text" style="display:none;">
+  <div class="form-area container">
+    <div class="row">
+      <label for="userName" [ngClass]="{ 'is-invalid': isSubmitted && form.userName.errors }">Username</label>
+      <input id="userName" autocomplete="new-password" type="text" formControlName="userName" class="form-control" />
+    </div>
+    <div class="row">
+      <label for="firstName" [ngClass]="{ 'is-invalid': isSubmitted && form.firstName.errors }">First Name</label>
+      <input id="firstName" type="text" formControlName="firstName" class="form-control" />
+    </div>
+    <div class="row">
+      <label for="lastName" [ngClass]="{ 'is-invalid': isSubmitted && form.lastName.errors }">Last Name</label>
+      <input id="lastName" type="text" formControlName="lastName" class="form-control" />
+    </div>
+    <div class="role-selector row">
+      <div>
+        <label for="role">Role</label>
+      </div>
+      <div>
+        <div class="btn-group" dropdown>
+          <button id="role" dropdownToggle type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                  aria-controls="role">
+            {{selectedRole}} <span class="caret"></span>
+          </button>
+          <ul id="discount" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="discount">
+            <li role="menuitem" *ngFor="let role of roles">
+              <a class="dropdown-item" href="#" (click)="setRole(role)">
+                {{role}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="role-selector row">
+      <div>
+        <label for="role">Status</label>
+      </div>
+      <div>
+        <div class="btn-group" dropdown>
+          <button id="role" dropdownToggle type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                  aria-controls="role">
+            {{selectedStatus}} <span class="caret"></span>
+          </button>
+          <ul id="discount" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="discount">
+            <li role="menuitem" *ngFor="let status of statuses">
+              <a class="dropdown-item" href="#" (click)="setStatus(status)">
+                {{status}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="mode == 'edit'">
+      <div class="form-check">
+        <input id="changepassword" type="checkbox" class="form-check-input" (click)="togglePassword()"/>
+        <label for="changepassword" class="form-check-label">Change Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <label for="password" [ngClass]="{ 'is-invalid': isSubmitted && form.password.errors }">Password:</label>
+      <input id="password" autocomplete="new-password" type="password" formControlName="password" class="form-control" />
+    </div>
+    <div class="row">
+      <label for="confirm" [ngClass]="{ 'is-invalid': isSubmitted && form.confirm.errors }">Confirm Password:</label>
+      <input id="confirm" autocomplete="new-password" type="password" min="1" formControlName="confirm" class="form-control" />
+    </div>
+  </div>
+</form>
+
+<div class="button-area">
+  <button type="button" class="btn btn-primary" [disabled]="isSaving" (click)="save()">Save</button>
+  <button type="button" class="btn btn-secondary" [disabled]="isSaving" (click)="cancel()">Cancel</button>
+</div>

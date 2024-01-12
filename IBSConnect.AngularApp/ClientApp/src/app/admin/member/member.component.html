@@ -1,0 +1,192 @@
+<form [formGroup]="form" class="" autocomplete="off">
+  <tabset class="member-container">
+    <tab heading="Details" id="tab1">
+      <div class="row mb-3">
+        <div class="col-6 col-md-4">
+          <label>ID No.</label>
+          <input class="form-control" formControlName="idNo" autocomplete="new-password">
+          <span class="small text-danger" *ngIf="isSubmitted && f.idNo.errors && f.idNo.errors.required">Field is required</span>
+        </div>
+        <div class="col-6 col-md-4">
+          <label>Category</label>
+          <select class="form-select" formControlName="categoryId" autocomplete="new-password">
+            <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
+          </select>
+          <span class="small text-danger" *ngIf="isSubmitted && f.categoryId.errors && f.categoryId.errors.required">Field is required</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6 col-md-4 col-lg-4">
+          <label>First Name</label>
+          <input class="form-control" formControlName="firstName" autocomplete="new-password">
+          <span class="small text-danger" *ngIf="isSubmitted && f.firstName.errors && f.firstName.errors.required">Field is required</span>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <label>Middle Name</label>
+          <input class="form-control" formControlName="middleName" autocomplete="new-password">
+          <span class="small text-danger" *ngIf="isSubmitted && f.middleName.errors && f.middleName.errors.required">Field is required</span>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <label>Last Name</label>
+          <input class="form-control" formControlName="lastName" autocomplete="new-password">
+          <span class="small text-danger" *ngIf="isSubmitted && f.lastName.errors && f.lastName.errors.required">Field is required</span>
+        </div>
+        <div class="col-2 col-lg">
+          <label>Age</label>
+          <input type="number" pattern="[0-9]+" class="form-control" formControlName="age" autocomplete="new-password">
+          <span class="small text-danger" *ngIf="isSubmitted && f.age.errors && f.age.errors.required">Field is required</span>
+        </div>
+        <div class="d-lg-none col">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-6 col-md-3 col-4 picture-container">
+          <label>Picture</label>
+          <div class="img-container position-relative">
+            <img class="d-block picture" [attr.src]="picture">
+            <div class="overlay" (click)="fileInput.click()"></div>
+          </div>
+          <div class="text-align-center">
+            <small>Click to upload</small>
+          </div>
+          <input class="hidden" type="file" #fileInput (change)="loadImage($event)"
+                 accept=".jpg, .jpeg, .png, .heic" />
+        </div>
+        <div class="col-sm-6 col-md-9 col-8">
+          <div class="row mb-3">
+            <div class="col-3">
+              <label>Year</label>
+              <select class="form-select" formControlName="yearId" autocomplete="new-password">
+                <option *ngFor="let item of years" [value]="item.id">{{item.name}}</option>
+              </select>
+              <span class="small text-danger" *ngIf="isSubmitted && f.yearId.errors && f.yearId.errors.required">Field is required</span>
+            </div>
+            <div class="col-9">
+              <label>Course</label>
+              <select class="form-select" formControlName="courseId" autocomplete="new-password">
+                <option *ngFor="let item of courses" [value]="item.id">{{item.name}}</option>
+              </select>
+              <span class="small text-danger" *ngIf="isSubmitted && f.courseId.errors && f.courseId.errors.required">Field is required</span>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-3">
+              <label>Section</label>
+              <input class="form-control" formControlName="section" autocomplete="new-password">
+              <span class="small text-danger" *ngIf="isSubmitted && f.section.errors && f.section.errors.required">Field is required</span>
+            </div>
+            <div class="col-9">
+              <label>School</label>
+              <select class="form-select" formControlName="collegeId" autocomplete="new-password">
+                <option *ngFor="let item of colleges" [value]="item.id">{{item.name}}</option>
+              </select>
+              <span class="small text-danger" *ngIf="isSubmitted && f.collegeId.errors && f.collegeId.errors.required">Field is required</span>
+            </div>
+          </div>
+          <div *ngIf="mode == 'edit'" class="row mb-3">
+            <div *ngIf="remainingMinutes >= 0" class="large-text">Time left: {{remainingMinutes | timeSpan}}</div>
+            <div *ngIf="remainingMinutes < 0" class="large-text">Billable Time: {{-remainingMinutes | timeSpan}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3" *ngIf="mode == 'edit'">
+        <input type="checkbox" id="changepassword" (change)="setChangePassword($event)" /> <label class="ml-3" for="changepassword">Change Password</label>
+      </div>
+      <div *ngIf="changePassword || mode == 'add'" class="row mb-3">
+        <div class="col-6 col-md-4">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password" autocomplete="new-password">
+          <span class="small text-danger" *ngIf="isSubmitted && f.password.errors && f.password.errors.required">Field is required</span>
+          <span class="small text-danger" *ngIf="isSubmitted && f.password.errors && f.password.errors.mustMatch">Passwords must match</span>
+        </div>
+        <div class="col-6 col-md-4">
+          <label>Confirm Password</label>
+          <input type="password" class="form-control" formControlName="confirmPassword" autocomplete="new-password">
+          <span class="small text-danger" *ngIf="isSubmitted && f.confirmPassword.errors && f.confirmPassword.errors.required">Field is required</span>
+          <span class="small text-danger" *ngIf="isSubmitted && f.password.errors && f.password.errors.mustMatch">Passwords must match</span>
+        </div>
+      </div>
+    </tab>
+    <tab *ngIf="mode == 'edit'" heading="History">
+      <div class="history-container">
+        <table class="table table-striped history-table">
+          <tr>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Total Time</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let session of sessions">
+            <td>{{session.startTime | date : 'MM/dd/yyyy hh:mm a'}}</td>
+            <td>{{session.endTime | date : 'MM/dd/yyyy hh:mm a'}}</td>
+            <td>{{session.totalMinutes | timeSpan}}</td>
+            <td><button class="d-block btn btn-sm btn-outline-primary" (click)="edit(session)">Edit</button></td>
+          </tr>
+        </table>
+      </div>
+    </tab>
+    <tab *ngIf="mode == 'edit'" heading="Payments">
+      <div class="payments-container">
+        <table class="payments-table">
+          <tr>
+            <th>Date</th>
+            <th>Minutes</th>
+            <th>Rate</th>
+            <th>Amount</th>
+          </tr>
+          <tr *ngFor="let payment of payments">
+            <td>{{payment.createdDate | date : 'MM/dd/yyyy hh:mm a'}}</td>
+            <td>{{payment.minutes | number }} ({{payment.minutes | timeSpan : 'short' }})</td>
+            <td>Php {{payment.rate| number : '.2' }}</td>
+            <td>Php {{payment.amount | number : '.2' }}</td>
+          </tr>
+        </table>
+      </div>
+    </tab>
+    <tab *ngIf="mode == 'edit'" heading="Arrears ">
+      <div class="payments-container">
+        <table class="payments-table">
+          <tr>
+            <th>Date</th>
+            <th>Minutes</th>
+            <th>Rate</th>
+            <th>Amount</th>
+          </tr>
+          <tr *ngFor="let payment of arrears">
+            <td>{{payment.createdDate | date : 'MM/dd/yyyy hh:mm a'}}</td>
+            <td>{{payment.minutes | number }} ({{payment.minutes | timeSpan : 'short' }})</td>
+            <td>Php {{payment.rate| number : '.2' }}</td>
+            <td>Php {{payment.amount | number : '.2' }}</td>
+          </tr>
+        </table>
+      </div>
+    </tab>
+    <tab *ngIf="mode == 'edit'" heading="Notes">
+      <div class="notes-container">
+        <div class="mb-3">
+          The text below will be displayed to the user when they login. Use this space to show the user any important information relevant to them.
+        </div>
+        <textarea class="notes" formControlName="notes"></textarea>
+      </div>
+    </tab>
+  </tabset>
+</form>
+
+<ng-template #editSession>
+  <form [formGroup]="sessionForm">
+    <div class="row mb-3">
+      <div class="col col-12">
+        <label>Start Time</label>
+        <input type="datetime-local" class="form-control" formControlName="startTime" />
+        <span class="small text-danger" *ngIf="isSessionSubmitted && sf.startTime.errors && sf.startTime.errors.required">Field is required</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col col-12">
+        <label>End Time</label>
+        <input type="datetime-local" class="form-control" formControlName="endTime" />
+        <span class="small text-danger" *ngIf="isSessionSubmitted && sf.endTime.errors && sf.endTime.errors.required">Field is required</span>
+      </div>
+    </div>
+  </form>
+</ng-template>

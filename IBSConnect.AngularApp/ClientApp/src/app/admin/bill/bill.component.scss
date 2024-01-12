@@ -1,0 +1,24 @@
+.bill-table {
+  min-width: 400px;
+
+
+  td {
+    padding: 0.25em;
+  }
+
+  .charge {
+    td {
+      border-top: 1px solid #aaa;
+    }
+
+    font-size: 1.25em;
+    font-weight: 600;
+  }
+
+  .billable {
+    td {
+      border-top: 1px solid #aaa;
+    }
+
+  }
+}

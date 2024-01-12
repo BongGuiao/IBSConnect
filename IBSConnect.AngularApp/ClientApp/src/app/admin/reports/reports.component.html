@@ -1,0 +1,92 @@
+<div class="d-flex mb-3 space-x-3 align-items-center">
+  <h3>Reports</h3>
+  <div class="spacer"></div>
+  <!--<div>
+    <search-text class="search" (change)="setFilterQuery($event)"></search-text>
+  </div>-->
+</div>
+
+<table class="reports">
+
+  <tr>
+    <td class="name">
+      Outstanding Bills
+    </td>
+    <td class="description">
+      Members with unpaid bills
+    </td>
+    <td class="action">
+      <button class="btn btn-sm btn-outline-primary" (click)="getOutstandingBills()">
+        <fa-icon [icon]="faDownload"></fa-icon> Download
+      </button>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="name">
+      Usage by School
+    </td>
+    <td class="description">
+      Total time spent per School
+    </td>
+    <td class="action">
+      <button class="btn btn-sm btn-outline-primary" (click)="getUsageByCollege()">
+        <fa-icon [icon]="faDownload"></fa-icon> Download
+      </button>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="name">
+      Usage by Unit Area
+    </td>
+    <td class="description">
+      Number of accesses by Unit Area
+    </td>
+    <td class="action">
+      <button class="btn btn-sm btn-outline-primary" (click)="getUsageByUnitArea()">
+        <fa-icon [icon]="faDownload"></fa-icon> Download
+      </button>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="name">
+      Usage by Demographics
+    </td>
+    <td class="description">
+      Number of accesses by Category, School, Course, and Year.
+    </td>
+    <td class="action">
+      <button class="btn btn-sm btn-outline-primary" (click)="getUsageByDemo()">
+        <fa-icon [icon]="faDownload"></fa-icon> Download
+      </button>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="name">
+      Usage by Applications
+    </td>
+    <td class="description">
+      Number of accesses by Application across Category, School, Course, and Year.
+    </td>
+    <td class="action">
+      <button class="btn btn-sm btn-outline-primary" (click)="getUsageByDemoApps()">
+        <fa-icon [icon]="faDownload"></fa-icon> Download
+      </button>
+    </td>
+  </tr>
+
+
+</table>
+
+<ng-template #dateDialog>
+  <div class="report-card-body">
+    <label>Start Date</label>
+    <input type="date" class="form-control" [(ngModel)]="dateRange.start" />
+    <label>End Date</label>
+    <input type="date" class="form-control" [(ngModel)]="dateRange.end" />
+  </div>
+</ng-template>

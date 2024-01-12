@@ -1,0 +1,22 @@
+.role-selector {
+  margin: 10px -15px;
+}
+
+  .role-selector div ~ div {
+    margin-left: 10px;
+  }
+
+.button-area {
+  width: 155px;
+  margin: auto;
+}
+
+  .button-area button ~ button {
+    margin-left: 5px;
+  }
+
+  .button-area button {
+    width: 75px;
+  }
+
+

@@ -1,0 +1,5 @@
+<div class="search-text-container">
+  <!-- [(ngModel)]="searchText" -->
+  <input type="text" #input="ngModel" [attr.placeholder]="placeholder" class="search form-control form-control-sm" [ngModel]="value" />
+  <fa-icon class="clear-search" [icon]="faTimes" (click)="clear()"></fa-icon>
+</div>

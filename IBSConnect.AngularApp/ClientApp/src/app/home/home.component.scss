@@ -1,0 +1,113 @@
+@import "../../styles/_colors.scss";
+
+.main-content {
+  position: relative;
+}
+
+.logo {
+  background: url(/assets/logo.png);
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+}
+
+.main-content-bg {
+  background: url(/assets/backdrop.jpg);
+  height: calc(100vh - 58px);
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px) brightness(1.6) saturate(120%) opacity(50%);
+}
+
+.search-box {
+  width: 760px;
+}
+
+.table-title .date-range {
+  font-size: 0.8em;
+  font-weight: 400;
+  margin-left: auto;
+  order: 2;
+}
+
+.medium-text {
+  font-size: 1.2em;
+}
+
+.large-text {
+  font-size: 1.5em;
+}
+
+.heavy {
+  font-weight: 600;
+}
+
+.search-results {
+}
+
+.spinner-area {
+  width: 46px;
+  margin: auto;
+  padding: 15% 0 0 0;
+}
+
+.message {
+  width: 260px;
+  margin: auto;
+  height: 200px;
+  padding: 8% 0 0 0;
+}
+
+.card-header {
+  font-size: 1.5em;
+  font-weight: 600;
+  background-color: $pink;
+  color: #fff;
+}
+
+.card-left {
+  width: 400px;
+}
+
+.card-right {
+}
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+}
+
+ul.app-list {
+  padding: 0.75em;
+  padding-top: 0.25em;
+  border: 1px solid #aaa;
+  height: 200px;
+  overflow-y: auto;
+  margin-bottom: 0;
+  border-radius: 0.25em;
+
+  li {
+    list-style: none;
+
+    input {
+      margin-right: 1em;
+    }
+
+    label {
+      font-size: 0.85em;
+      cursor: pointer;
+      display: block;
+      padding-left: 1.8em;
+      text-indent: -1.8em;
+      user-select: none;
+    }
+  }
+}

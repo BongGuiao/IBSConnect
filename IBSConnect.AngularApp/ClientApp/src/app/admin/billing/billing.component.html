@@ -1,0 +1,20 @@
+<div class="d-flex mb-3 space-x-3 align-items-center">
+  <h3 class="print-hidden">Billing</h3>
+  <div class="spacer"></div>
+  <div *ngIf="selectedMember == null">
+    <input id="showAll" type="checkbox" class="form-check-input" (change)="setShowAll($event)" />
+    <label for="showAll" class="form-check-label user-select-none">Show all</label>
+  </div>
+  <search-text *ngIf="selectedMember == null" class="search" (change)="setFilterQuery($event)"></search-text>
+  <button *ngIf="selectedMember != null" class="btn btn-primary print-hidden" (click)="print()">Print</button>
+  <button *ngIf="selectedMember != null" class="btn btn-outline-primary print-hidden" (click)="close()">Close</button>
+</div>
+
+<div class="mb-3">
+
+</div>
+
+<data-grid *ngIf="selectedMember == null" [source]="source" [rows]="members" [total]="total" [rowSelectable]="true"
+  (onRowSelect)="select($event)"></data-grid>
+
+<bill *ngIf="selectedMember != null" [member]="selectedMember"></bill>

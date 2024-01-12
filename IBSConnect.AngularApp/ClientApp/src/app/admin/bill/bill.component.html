@@ -1,0 +1,60 @@
+<div *ngIf="bill">
+  <div>
+    <table class="bill-table">
+      <tr>
+        <td>Date:</td>
+        <td class="text-align-right" colspan="2">{{bill.date | date : 'MM/dd/yyyy'}}</td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td class="text-align-right" colspan="2">{{bill.lastName}}, {{bill.firstName}} {{bill.middleName}}</td>
+      </tr>
+      <tr>
+        <td>ID:</td>
+        <td class="text-align-right" colspan="2">{{bill.idNo}}</td>
+      </tr>
+      <tr>
+        <td>Allotted Time:</td>
+        <td></td>
+        <td *ngIf="!showMinutes" class="text-align-right">{{bill.allottedTime | timeSpan : 'short' }}</td>
+        <td *ngIf="showMinutes" class="text-align-right">{{bill.allottedTime | number }}</td>
+      </tr>
+      <tr>
+        <td>Paid Time:</td>
+        <td></td>
+        <td *ngIf="!showMinutes" class="text-align-right">{{bill.paidMinutes | timeSpan : 'short'}}</td>
+        <td *ngIf="showMinutes" class="text-align-right">{{bill.paidMinutes | number }}</td>
+      </tr>
+      <tr>
+        <td>Used Time:</td>
+        <td></td>
+        <td *ngIf="!showMinutes" class="text-align-right">{{bill.totalMinutes | timeSpan : 'short'}}</td>
+        <td *ngIf="showMinutes" class="text-align-right">{{bill.totalMinutes | number }}</td>
+      </tr>
+      <tr class="billable">
+        <td>Billable Time:</td>
+        <td></td>
+        <td *ngIf="!showMinutes" class="text-align-right">{{bill.excessMinutes | timeSpan : 'short'}}</td>
+        <td *ngIf="showMinutes" class="text-align-right">{{bill.excessMinutes | number }}</td>
+      </tr>
+      <tr>
+        <td>Rate per minute:</td>
+        <td class="text-align-right">Php</td>
+        <td class="text-align-right">{{bill.rate | number : '.2' }}</td>
+      </tr>
+      <tr class="charge">
+        <td>Total:</td>
+        <td class="text-align-right">Php</td>
+        <td class="text-align-right">{{bill.charge | number : '.2' }}</td>
+      </tr>
+    </table>
+
+    <button class="btn btn-primary print-hidden" (click)="showPayment()">Payment</button>
+  </div>
+</div>
+
+
+
+<ng-template #paymentDialog>
+  <payment #paymentInstance [rate]="bill.rate" [totalMinutes]="bill.excessMinutes"></payment>
+</ng-template>
