@@ -127,6 +127,25 @@ public class MemberSessionBL : IMemberSessionBL
         var session = await _dataContext.MemberSessions
             .Where(m => m.MemberId == id && m.EndTime == null).OrderByDescending(m => m.StartTime).FirstOrDefaultAsync();
 
+        decimal arrearAmount = 0;
+        decimal minsArrears = 0;
+        decimal hoursArrears = 0;
+        decimal excessMinutes = 0;
+
+        var isWithArrears = await _dataContext.IBSTranHistories
+                .Where(m => m.MemberId == id && m.ExcessMinutes > 0)
+                .FirstOrDefaultAsync();
+        if (isWithArrears != null && member != null)
+        {
+            member.IsWithArrears = true;
+            excessMinutes = isWithArrears.ExcessMinutes;
+            member.Rate = isWithArrears.Rate;
+            minsArrears = excessMinutes % 60;
+            hoursArrears = Math.Round((isWithArrears.ExcessMinutes - minsArrears) / 60);
+            arrearAmount = (hoursArrears * member.Rate);
+            member.Amount = arrearAmount;
+        }
+
         if (session != null && member != null)
         {
             var currentTime = (int)DateTime.Now.Subtract(session.StartTime).TotalMinutes;
@@ -147,10 +166,7 @@ public class MemberSessionBL : IMemberSessionBL
             var remainingTime = 0;
 
             //decimal remainingTime = 0;
-            decimal arrearAmount = 0;
-            decimal minsArrears = 0;
-            decimal hoursArrears = 0;
-            decimal excessMinutes = 0;
+           
 
             if (!member.IsFreeTier)
             {
@@ -163,20 +179,7 @@ public class MemberSessionBL : IMemberSessionBL
             {
                 billableTime = -remainingTime;
             }
-            var isWithArrears = await _dataContext.IBSTranHistories
-                .Where(m => m.MemberId == id && m.ExcessMinutes > 0)
-                .FirstOrDefaultAsync();
-            if (isWithArrears != null)
-            {
-                member.IsWithArrears = true;
-                excessMinutes = isWithArrears.ExcessMinutes;
-                member.Rate = isWithArrears.Rate;
-                minsArrears = excessMinutes % 60;
-                hoursArrears = Math.Round((isWithArrears.ExcessMinutes - minsArrears) / 60);
-                arrearAmount = (hoursArrears * member.Rate);
-                member.Amount = arrearAmount;
-            }
-
+            
             return new CurrentSessionViewModel()
             {
                 IdNo = member.IdNo,
@@ -204,7 +207,37 @@ public class MemberSessionBL : IMemberSessionBL
                 Amount = member.Amount
             };
         }
+        if (session == null &&  isWithArrears != null)
+        {
 
+            return new CurrentSessionViewModel()
+            {
+
+                IdNo = member.IdNo,
+                FirstName = member.FirstName,
+                MiddleName = member.MiddleName,
+                LastName = member.LastName,
+                Age = member.Age,
+                Category = member.Category,
+                College = member.College,
+                Course = member.Course,
+                Year = member.Year,
+                Section = member.Section,
+                Picture = member.Picture,
+                CurrentTime = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                TotalMinutes = 0,
+                TimeAllotted = 0,
+                RemainingTime = 0,
+                BillableAmount = 0,
+                Notes = member.Notes,
+                IsFreeTier = member.IsFreeTier,
+                IsWithArrears = member.IsWithArrears,
+                Rate = member.Rate,
+                Amount = member.Amount
+            };
+        }
         return null;
     }
 

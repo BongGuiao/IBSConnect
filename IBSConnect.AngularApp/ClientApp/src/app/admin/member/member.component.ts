@@ -113,6 +113,10 @@ export class MemberComponent implements OnInit {
   totalMinutes: number;
   remainingMinutes: number;
 
+  totalTimeArrears: number;
+
+  arrearsHour = 0;
+  arrearsMinute = 0;
 
   loadData(member: IMember) {
     this.credits = member.credits;
@@ -172,6 +176,9 @@ export class MemberComponent implements OnInit {
     this.membersService.getTotalArrears(this.member.id)
       .subscribe(d => {
         this.totalArrears = d;
+        this.totalTimeArrears = this.totalArrears[0].totalMinutes;
+        this.membersService.totalTimeArrears = this.totalTimeArrears;
+        this.getTimeArrears();
       });
   }
 
@@ -222,6 +229,21 @@ export class MemberComponent implements OnInit {
     }
 
     return request;
+  }
+
+  private getTimeArrears() {
+    setTimeout(() => {
+      let totalMinutesArrears = this.membersService.totalTimeArrears;
+
+      let minsarrears = totalMinutesArrears % 60;
+
+      totalMinutesArrears = totalMinutesArrears - minsarrears;
+
+      let hoursarrears = Math.round(totalMinutesArrears / 60);
+      this.arrearsHour = hoursarrears;
+      this.arrearsMinute = minsarrears;
+
+    }, 2000)
   }
 
   @ViewChild('editSession')

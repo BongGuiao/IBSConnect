@@ -86,6 +86,7 @@
           <div *ngIf="mode == 'edit'" class="row mb-3">
             <div *ngIf="remainingMinutes >= 0" class="large-text">Time left: {{remainingMinutes | timeSpan}}</div>
             <div *ngIf="remainingMinutes < 0" class="large-text">Billable Time: {{-remainingMinutes | timeSpan}}</div>
+            <div *ngIf="totalTimeArrears > 0" class="large-text">Time Arrears: {{ arrearsHour | number }}.{{ arrearsMinute | number }}</div>
           </div>
         </div>
       </div>
@@ -143,7 +144,7 @@
         </table>
       </div>
     </tab>
-    <tab *ngIf="mode == 'edit'" heading="Arrears ">
+    <tab *ngIf="mode == 'edit'" heading="Paid Arrears ">
       <div class="payments-container">
         <table class="payments-table">
           <tr>

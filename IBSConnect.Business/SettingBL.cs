@@ -100,7 +100,10 @@ public class SettingBL : ISettingBL
 
             }
 
+            
+
         }
+
 
         await _dataContext.SaveChangesAsync();
     }
@@ -151,11 +154,11 @@ public class SettingBL : ISettingBL
         };
 
 
-        await _dataContext.IBSResetHistories.AddAsync(dbHistory);
+        _dataContext.IBSResetHistories.Add(dbHistory);
 
-        await _dataContext.SaveChangesAsync();
+        _dataContext.SaveChanges();
 
-        return dbHistory.Id;
+        return await Task.FromResult(dbHistory.Id);
     }
 
 }
