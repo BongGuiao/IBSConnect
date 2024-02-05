@@ -18,6 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(tap(response => {
 
     }, (response: any) => {
+      console.log(response)
       if (response instanceof HttpErrorResponse) {
         if (response.status === 401 && response.error) {
           this.errorService.addErrors([response.error.message]);
@@ -37,7 +38,6 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (response.error.message) {
             this.errorService.addErrors([response.error.message]);
           }
-          //this.errorService.addErrors(Array.isArray(response.error) ? response.error : [response.error]);
           return;
         }
 
